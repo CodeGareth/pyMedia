@@ -1,0 +1,116 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-F3w7mX95PdgyTmZZMECAngseQB83DfGTowi0iMjiWaeVhAn4FJkqJByhZMI3AhiU" crossorigin="anonymous">
+
+    <title>pyMedia Dev Test 🎥 📸</title>
+  </head>
+  <body>
+
+    
+    <div class = "container pt-5">
+
+        <!--Title + Basic Instructions-->
+        <div class="jumbotron jumbotron-fluid">
+              <h1 class="display-4">pyMedia Dev Test 🎥 📸</h1>
+              <br>
+              <!-- <p class = "lead"> Select the mode, and use the search bar to return a youtube video or up to 3 photos.</p>
+              <p><i>If you select Flickr Mode, select the number of photos you wish to see as well before you search</i></p> -->
+        </div>
+
+        <hr>
+
+        <div class = "container pl-1 pt-4 pb-3">
+
+            <!--Submission Form-->
+            <form onsubmit = "submitFunction()"> 
+
+            <div class="input-group mb-3">
+                
+                <div class="input-group-prepend" id = "mode-input">
+                  <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id = "mode">Mode</button>
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" id = "mode-1" href="#" onclick = "numberHider()">YouTube 🎥</a>
+                    <a class="dropdown-item" id = "mode-2" href="#" onclick="numberRevealer()">Flickr 📸</a>
+                  </div>
+                </div>
+
+                <div class="input-group-prepend" id = "number-pictures-input" style = "display:none">
+                    <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id = "number-pictures" >Number of Pictures 📸</button>
+                    <div class="dropdown-menu">
+                      <a class="dropdown-item" id = "total-1" href="#">1</a>
+                      <a class="dropdown-item" id = "total-2" href="#">2</a>
+                      <a class="dropdown-item" id = "total-3" href="#">3</a>
+                    </div>
+                  </div>
+
+                <input type="text" class="form-control" aria-label="Text input with dropdown button">
+                <button type="submit" class="btn btn-primary">Submit</button>
+
+
+            </div>
+
+            </form>
+
+        </div>
+
+
+    </div>
+
+
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
+  </body>
+
+  <script>
+
+        // On page load add event listeners to drop down selections 
+        // Important to allow button values to be updated in line with drop down selection
+
+        document.getElementById("mode-1").addEventListener("click",modeUpdater);
+        document.getElementById("mode-2").addEventListener("click",modeUpdater);
+
+        document.getElementById("total-1").addEventListener("click",numberUpdater);
+        document.getElementById("total-2").addEventListener("click",numberUpdater);
+        document.getElementById("total-3").addEventListener("click",numberUpdater);
+
+        // Update mode to reflect selection
+        function modeUpdater(evt) {
+            document.getElementById("mode").innerHTML = evt.originalTarget.innerHTML;
+            document.getElementById("mode").value = evt.originalTarget.innerHTML;
+        }
+
+        // Update number to reflect selection
+        function numberUpdater(evt){
+            document.getElementById("number-pictures").innerHTML = evt.originalTarget.innerHTML;
+            document.getElementById("number-pictures").value = evt.originalTarget.innerHTML;
+        }
+
+        // Reveal number drop down list
+        function numberRevealer(){
+            document.getElementById("number-pictures-input").style.display = "block";
+        }
+
+        // Hide number drop down list - including whitespace
+        function numberHider(){
+
+            // On hide - blank values
+            document.getElementById("number-pictures").innerHTML = "Number of Pictures 📸";
+            document.getElementById("number-pictures").value = "";
+            document.getElementById("number-pictures-input").style.display = "none";
+        }
+
+        // Submit Function 
+
+
+  </script>
+
+
+</html>
