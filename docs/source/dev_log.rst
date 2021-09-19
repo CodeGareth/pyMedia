@@ -21,4 +21,9 @@ Notes:
     * API keys collected and stored in a env file kept outside of the git repository
     * Seems I don't actually need a key for Flickr! The public photo feed seems open for all - with further research it seems an api key just expands the search terms
 
+    * Having now built up the template I was thinking about - I now need to think how to submit the information to Flask
+    * I like the idea of having flask handle it with one api end point - but to satisfy the brief I'll expand it to YouTube or Flask 
+    * I'm going to use the user submitted values to help drive the api request
+    * One submission form -> multiple end points
+
 
