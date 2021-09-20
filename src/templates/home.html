@@ -16,14 +16,21 @@
 <body style = "min-height: 100vh;">
 
 
-    <div class="container pt-5" height = "100%">
+    <div class="container pt-5 pb-5" height = "100%">
 
         <!--Title + Basic Instructions-->
         <div class="jumbotron jumbotron-fluid">
-            <h1 class="display-4">pyMedia Dev Test 🎥 📸</h1>
+            <h1 class="display-5">pyMedia Dev Test 🎥 📸</h1>
             <br>
-            <!-- <p class = "lead"> Select the mode, and use the search bar to return a youtube video or up to 3 photos.</p>
-              <p><i>If you select Flickr Mode, select the number of photos you wish to see as well before you search</i></p> -->
+            <p>To use this tool:</p>
+            <ol>
+                <li>Please select your mode: Youtube or Flickr</li>
+                <li>If you select Flickr - please select the number of pictures you wish to see</li>
+                <li>Type in what you wish to see in the text box e.g Cats do the craziest of things</li>
+                <li>Hit submit when you're ready</li>
+            </ol>
+            <p> Youtube search will return a selection of 21 items based on your search query, where as Flickr will return up to 3 random pictures.</p>
+            <p> Need to reset? Hit refresh in your browser</p>
         </div>
 
         <hr>
@@ -68,10 +75,10 @@
         <hr>
 
         <!--iFrame Target Output-->
-        <div class="container pl-1 pt-4 pb-3">
-            <iframe name = "apiResults" id = "results" width = "100%" style = "min-height: 100vh;"></iframe>
+        <div class="container pl-1 pt-4 pb-5">
+            <iframe class = "pb-5 mb-5" name = "apiResults" id = "results" width = "100%" style = "min-height:100vh;"></iframe>
         </div>
-    
+
     </div>
 
 
