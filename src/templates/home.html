@@ -31,7 +31,7 @@
         <div class="container pl-1 pt-4 pb-3">
 
             <!--Submission Form - use js to update form action on click of submit-->
-            <form action="" method="GET" id="media-request">
+            <form action="" method="GET" id="media-request" target = "_blank">
 
                 <div class="input-group mb-3">
 
@@ -126,7 +126,16 @@
         var number_selected = document.getElementById("number-pictures").value
         var search_term = document.getElementById("search-text").value
 
-        document.getElementById("media-request").action = `/${mode_selected}/${search_term}`
+        console.log(mode_selected, number_selected, search_term)
+
+        if (mode_selected == "YouTube")
+        {
+            document.getElementById("media-request").action = `/${mode_selected}/${search_term}`
+        }
+        else if (mode_selected == "Flickr")
+        {
+            document.getElementById("media-request").action = `/${mode_selected}/${search_term}/${number_selected}`
+        }
 
         // fetch(`https:127.0.0.1:5000/${mode_selected}/${search_term}`)
         //     .then(data => {
