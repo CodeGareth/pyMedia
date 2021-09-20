@@ -8,10 +8,10 @@ def landing_page():
     return render_template("home.html")
 
 ## Ensure the end point matches the text casing in the js 
-@app.route("/YouTube", methods = ['GET'])
-def youtube_route():
+@app.route("/YouTube/<query>", methods = ['GET'])
+def youtube_route(query):
 
-    return jsonify({"message":"awesome"})
+    return jsonify({"search_term":query})
 
 if __name__ == "__main__":
 

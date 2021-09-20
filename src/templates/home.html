@@ -30,8 +30,8 @@
 
         <div class="container pl-1 pt-4 pb-3">
 
-            <!--Submission Form-->
-            <form onsubmit="submitFunction()">
+            <!--Submission Form - use js to update form action on click of submit-->
+            <form action="" method="GET" id="media-request">
 
                 <div class="input-group mb-3">
 
@@ -55,7 +55,7 @@
                     </div>
 
                     <input type="text" class="form-control" id="search-text">
-                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
 
 
                 </div>
@@ -91,6 +91,8 @@
     document.getElementById("total-2").addEventListener("click", numberUpdater);
     document.getElementById("total-3").addEventListener("click", numberUpdater);
 
+    document.getElementById('submit-button').addEventListener("click", submitFunction);
+
     // Update mode to reflect selection
     function modeUpdater(evt) {
         document.getElementById("mode").innerHTML = evt.originalTarget.innerHTML;
@@ -124,10 +126,12 @@
         var number_selected = document.getElementById("number-pictures").value
         var search_term = document.getElementById("search-text").value
 
-        fetch(`https:127.0.0.1:5000/${mode_selected}/${search_term}`)
-            .then(data => {
-                return data.json();
-            })
+        document.getElementById("media-request").action = `/${mode_selected}/${search_term}`
+
+        // fetch(`https:127.0.0.1:5000/${mode_selected}/${search_term}`)
+        //     .then(data => {
+        //         return data.json();
+        //     }).then(json => console.log(json))
 
     }
 
