@@ -13,10 +13,10 @@
     <title>pyMedia Dev Test 🎥 📸</title>
 </head>
 
-<body>
+<body style = "min-height: 100vh;">
 
 
-    <div class="container pt-5">
+    <div class="container pt-5" height = "100%">
 
         <!--Title + Basic Instructions-->
         <div class="jumbotron jumbotron-fluid">
@@ -28,10 +28,11 @@
 
         <hr>
 
+        <!--Custom Search Bar-->
         <div class="container pl-1 pt-4 pb-3">
 
             <!--Submission Form - use js to update form action on click of submit-->
-            <form action="" method="GET" id="media-request">
+            <form action="" method="GET" id="media-request" target = "apiResults">
 
                 <div class="input-group mb-3">
 
@@ -64,7 +65,13 @@
 
         </div>
 
+        <hr>
 
+        <!--iFrame Target Output-->
+        <div class="container pl-1 pt-4 pb-3">
+            <iframe name = "apiResults" id = "results" width = "100%" style = "min-height: 100vh;"></iframe>
+        </div>
+    
     </div>
 
 
