@@ -26,4 +26,25 @@ Notes:
     * I'm going to use the user submitted values to help drive the api request
     * One submission form -> multiple end points
 
+20/09/2021
+----------
 
+Updating this a day after...
+
+Made a lot of progress with the app, having connected the two apis together with the app - Youtube and flask. 
+
+On initial read, I had utilised the Youtube embedded api to return one video as a lucky dip, on second read seemed I need to allow the user to browser. In lieu of having
+someone to clarify - I'll add both modes in :)
+
+21/09/2021
+----------
+
+Plan today: 
+    * Add the YouTube mode option - use it as a switch to dictate what template you're sent
+    * Fill out a readme section?
+
+Nice to have:
+
+    * Handle a 404 request? 
+    * Look to lock down the submit button if the necessary details haven't been completed?
+    * Tidy the javascript up
