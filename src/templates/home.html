@@ -13,10 +13,10 @@
     <title>pyMedia Dev Test 🎥 📸</title>
 </head>
 
-<body style = "min-height: 100vh;">
+<body style="min-height: 100vh;">
 
 
-    <div class="container pt-5 pb-5" height = "100%">
+    <div class="container pt-5 pb-5" height="100%">
 
         <!--Title + Basic Instructions-->
         <div class="jumbotron jumbotron-fluid">
@@ -25,11 +25,13 @@
             <p>To use this tool:</p>
             <ol>
                 <li>Please select your mode: Youtube or Flickr</li>
+                <li>If you select Youtube - please select the style you want - browse (select from 21) or watch (insta-watch one video related to your search)</li>
                 <li>If you select Flickr - please select the number of pictures you wish to see</li>
                 <li>Type in what you wish to see in the text box e.g Cats do the craziest of things</li>
                 <li>Hit submit when you're ready</li>
             </ol>
-            <p> Youtube search will return a selection of 21 items based on your search query, where as Flickr will return up to 3 random pictures.</p>
+            <p> Youtube search will return a selection of 21 items based on your search query, where as Flickr will
+                return up to 3 random pictures.</p>
             <p> Need to reset? Hit refresh in your browser</p>
         </div>
 
@@ -39,19 +41,32 @@
         <div class="container pl-1 pt-4 pb-3">
 
             <!--Submission Form - use js to update form action on click of submit-->
-            <form action="" method="GET" id="media-request" target = "apiResults">
+            <form action="" method="GET" id="media-request" target="apiResults">
 
                 <div class="input-group mb-3">
 
+                    <!--Main Mode Select-->
                     <div class="input-group-prepend" id="mode-input">
                         <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" id="mode">Mode</button>
                         <div class="dropdown-menu">
-                            <a class="dropdown-item" id="mode-1" href="#" onclick="numberHider()">YouTube</a>
-                            <a class="dropdown-item" id="mode-2" href="#" onclick="numberRevealer()">Flickr</a>
+                            <a class="dropdown-item" id="mode-1" href="#" onclick="numberHider();styleRevealer()">YouTube</a>
+                            <a class="dropdown-item" id="mode-2" href="#" onclick="numberRevealer();styleHider()">Flickr</a>
                         </div>
                     </div>
 
+                    <!--YouTube Mode Select-->
+                    <div class="input-group-prepend" id="youtube-mode-input" style="display:none">
+                        <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown"
+                            aria-haspopup="true" aria-expanded="false" id="youtube-mode">Style</button>
+                        <div class="dropdown-menu">
+                            <a class="dropdown-item" id="youtube-mode-1" href="#">Browse</a>
+                            <a class="dropdown-item" id="youtube-mode-2" href="#">Watch</a>
+                        </div>
+                    </div>
+
+
+                    <!--Number of Pictures Select-->
                     <div class="input-group-prepend" id="number-pictures-input" style="display:none">
                         <button class="btn btn-outline-dark dropdown-toggle" type="button" data-toggle="dropdown"
                             aria-haspopup="true" aria-expanded="false" id="number-pictures">Number of Pictures</button>
@@ -65,7 +80,6 @@
                     <input type="text" class="form-control" id="search-text">
                     <button type="submit" class="btn btn-primary" id="submit-button">Submit</button>
 
-
                 </div>
 
             </form>
@@ -76,7 +90,7 @@
 
         <!--iFrame Target Output-->
         <div class="container pl-1 pt-4 pb-5">
-            <iframe class = "pb-5 mb-5" name = "apiResults" id = "results" width = "100%" style = "min-height:100vh;"></iframe>
+            <iframe class="pb-5 mb-5" name="apiResults" id="results" width="100%" style="min-height:100vh;"></iframe>
         </div>
 
     </div>
@@ -101,6 +115,9 @@
     document.getElementById("mode-1").addEventListener("click", modeUpdater);
     document.getElementById("mode-2").addEventListener("click", modeUpdater);
 
+    document.getElementById("youtube-mode-1").addEventListener("click", styleUpdater);
+    document.getElementById("youtube-mode-2").addEventListener("click", styleUpdater);
+
     document.getElementById("total-1").addEventListener("click", numberUpdater);
     document.getElementById("total-2").addEventListener("click", numberUpdater);
     document.getElementById("total-3").addEventListener("click", numberUpdater);
@@ -119,6 +136,11 @@
         document.getElementById("number-pictures").value = evt.originalTarget.innerHTML;
     }
 
+    function styleUpdater(evt){
+        document.getElementById("youtube-mode").innerHTML = evt.originalTarget.innerHTML;
+        document.getElementById("youtube-mode").value = evt.originalTarget.innerHTML;
+    }
+
     // Reveal number drop down list
     function numberRevealer() {
         document.getElementById("number-pictures-input").style.display = "block";
@@ -133,28 +155,36 @@
         document.getElementById("number-pictures-input").style.display = "none";
     }
 
+    // Reveal style drop down list
+    function styleRevealer() {
+        document.getElementById("youtube-mode-input").style.display = "block";
+    }
+
+    // Hide style drop down list - including whitespace
+    function styleHider() {
+
+        // On hide - blank values
+        document.getElementById("youtube-mode").innerHTML = "Style";
+        document.getElementById("youtube-mode").value = "";
+        document.getElementById("youtube-mode-input").style.display = "none";
+    }
+
     // Submit Function 
     function submitFunction() {
 
         var mode_selected = document.getElementById("mode").value
         var number_selected = document.getElementById("number-pictures").value
         var search_term = document.getElementById("search-text").value
+        var youtube_mode = document.getElementById("youtube-mode").value
 
-        console.log(mode_selected, number_selected, search_term)
+        console.log(mode_selected, number_selected, search_term, youtube_mode)
 
-        if (mode_selected == "YouTube")
-        {
-            document.getElementById("media-request").action = `/${mode_selected}/${search_term}`
+        if (mode_selected == "YouTube") {
+            document.getElementById("media-request").action = `/${mode_selected}/${youtube_mode}/${search_term}`
         }
-        else if (mode_selected == "Flickr")
-        {
+        else if (mode_selected == "Flickr") {
             document.getElementById("media-request").action = `/${mode_selected}/${search_term}/${number_selected}`
         }
-
-        // fetch(`https:127.0.0.1:5000/${mode_selected}/${search_term}`)
-        //     .then(data => {
-        //         return data.json();
-        //     }).then(json => console.log(json))
 
     }
 

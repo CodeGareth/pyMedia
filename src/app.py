@@ -14,8 +14,8 @@ def landing_page():
     return render_template("home.html")
 
 ## Ensure the end point matches the text casing in the js 
-@app.route("/YouTube/<query>", methods = ['GET'])
-def youtube_route(query):
+@app.route("/YouTube/<mode>/<query>", methods = ['GET'])
+def youtube_route(mode, query):
 
     youtube_search = requests.get(f"https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=21&q={query}&key={os.getenv('YOUTUBE_API')}")
     youtube_search_json_results = youtube_search.json()
@@ -38,8 +38,12 @@ def youtube_route(query):
     
             storage_collection.append(trimmed_item)
 
-    ## FYI: For loop within template converts list of dicts to html
-    return render_template("youtube_search_return.html", youtube_search_results = storage_collection)
+    if mode == "Browse":
+        ## FYI: For loop within template converts list of dicts to html
+        return render_template("youtube_search_return.html", youtube_search_results = storage_collection)
+    elif mode == "Watch":
+        ## For ease, always return the first item from storage collection
+        return render_template("youtube_watch.html", video_id = storage_collection[0]["id"])
 
 ## Ensure the end point matches the text casing in the js 
 @app.route("/Flickr/<query>/<number_request>", methods = ['GET'])
