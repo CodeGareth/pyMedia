@@ -1,9 +1,11 @@
-from flask import Flask, render_template
-import requests
 import ast
-import random
 import os
+import random
+
+import requests
 from dotenv import load_dotenv
+from flask import Flask, render_template
+
 load_dotenv()
 
 app = Flask(__name__)
