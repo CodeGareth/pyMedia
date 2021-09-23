@@ -15,7 +15,6 @@ def landing_page():
 
     return render_template("home.html")
 
-## Ensure the end point matches the text casing in the js 
 @app.route("/YouTube/<mode>/<query>", methods = ['GET'])
 def youtube_route(mode, query):
 
@@ -40,7 +39,9 @@ def youtube_route(mode, query):
     
             storage_collection.append(trimmed_item)
 
-    if mode == "Browse":
+    if len(storage_collection) == 0: 
+        return "No information present in storage collection - suggests YouTube API unable to return info based on your query - please change your search query and try again", 422
+    elif mode == "Browse":
         ## FYI: For loop within template converts list of dicts to html
         return render_template("youtube_search_return.html", youtube_search_results = storage_collection)
     elif mode == "Watch":
@@ -59,14 +60,21 @@ def flickr_route(query, number_request):
     ## ref: https://docs.python.org/3/library/ast.html - search or ast.literal_eval 
     converted_flickr_response = ast.literal_eval(flickr_response.content.decode('utf-8').replace("jsonFlickrFeed",""))
 
-    ## Make a random selection from the list of available items
-    random_selection_of_photos = random.choices(converted_flickr_response["items"], k = int(number_request))
+    try: 
 
-    ## Convert this to html text with the intention of returning back to flask template iframe as is
-    media = " ".join([f"<img src = {selection['media']['m']}></img>" for selection in random_selection_of_photos])
+        ## Make a random selection from the list of available items
+        random_selection_of_photos = random.choices(converted_flickr_response["items"], k = int(number_request))
 
-    #return jsonify({"search_term":query, "total_photos":number_request, "results":random_selection_of_photos})
-    return render_template("flickr_return.html", media=media)
+        ## Convert this to html text with the intention of returning back to flask template iframe as is
+        media = " ".join([f"<img src = {selection['media']['m']}></img>" for selection in random_selection_of_photos])
+
+    except IndexError: 
+
+        return "Converted flickr response is likely empty or does not contain the number of images you want to see - please change your search query and try again",422
+
+    else:
+
+        return render_template("flickr_return.html", media=media)
 
 if __name__ == "__main__":
 
