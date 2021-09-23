@@ -48,3 +48,20 @@ Nice to have:
     * Handle a 404 request? 
     * Look to lock down the submit button if the necessary details haven't been completed?
     * Tidy the javascript up
+
+23/09/2021
+----------
+
+Having a working model now which I'm happy about - I'm now at the "nice to have" stage - taking the time before submission tomorrow
+to make it just right. 
+
+Plan: 
+
+* Add basic error handling - when there's nothing returned by the html request, return a simple 404 message
+* Build a powerpoint deck acting as basic presentation outline
+* Record a "set-up" video, walking through the read me instructions - convert to gif? lower memory cost with all the gain of a video
+* Record a live demo, just in case there's an unexpected error during the presentation
+
+Don't forget: 
+
+* Send API Details with the submission "just in case"
