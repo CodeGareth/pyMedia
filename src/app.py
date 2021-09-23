@@ -18,6 +18,8 @@ def landing_page():
 @app.route("/YouTube/<mode>/<query>", methods = ['GET'])
 def youtube_route(mode, query):
 
+    """Dependent on the mode selected by the user, return the appropiate template with the addition of wrangled youtube api search data"""
+
     youtube_search = requests.get(f"https://youtube.googleapis.com/youtube/v3/search?part=snippet&maxResults=21&q={query}&key={os.getenv('YOUTUBE_API')}")
     youtube_search_json_results = youtube_search.json()
 
@@ -50,6 +52,8 @@ def youtube_route(mode, query):
 
 @app.route("/Flickr/<number_request>/<query>", methods = ['GET'])
 def flickr_route(query, number_request):
+
+    """Dependent on the number of photos requested by the user, return the appropiate length array of images with pre-prepared html tags"""
 
     ## Flickr public api will return a bytes string with json format which needs to be converted 
     flickr_response = requests.get(f"https://www.flickr.com/services/feeds/photos_public.gne?format=json&tags={query}")
