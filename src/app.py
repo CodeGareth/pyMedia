@@ -48,7 +48,6 @@ def youtube_route(mode, query):
         ## For ease, always return the first item from storage collection
         return render_template("youtube_watch.html", video_id = storage_collection[0]["id"])
 
-## Ensure the end point matches the text casing in the js 
 @app.route("/Flickr/<query>/<number_request>", methods = ['GET'])
 def flickr_route(query, number_request):
 
