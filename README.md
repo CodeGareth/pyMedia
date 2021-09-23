@@ -17,6 +17,8 @@ My own custom javascript was written to add functionality such as hide and appea
 
 ## Installation
 
+*The below installation instructions assumes you already have Python installed - it was built using Python 3.8.3*
+
 As this is designed to be ran locally, the recommended way to run this is to:
 
 1. Download this repo to your own local machine - you can use this [link](https://github.com/CodeGareth/pyMedia/archive/refs/heads/main.zip) to download this repo as a zip file.
