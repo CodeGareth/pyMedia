@@ -52,8 +52,7 @@ def youtube_route(mode, query):
 @app.route("/Flickr/<query>/<number_request>", methods = ['GET'])
 def flickr_route(query, number_request):
 
-    ## Flickr public api will return a bytes string which needs to be converted 
-    ## Thankfully it at least has the structure of json
+    ## Flickr public api will return a bytes string with json format which needs to be converted 
     flickr_response = requests.get(f"https://www.flickr.com/services/feeds/photos_public.gne?format=json&tags={query}")
 
     ## Note - Using literal eval vs eval as safer 
