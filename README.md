@@ -21,7 +21,7 @@ As this is designed to be ran locally, the recommended way to run this is to:
 
 1. Download this repo to your own local machine - you can use this [link](https://github.com/CodeGareth/pyMedia/archive/refs/heads/main.zip) to download this repo as a zip file.
   * If using the zip download, ensure you unzip all files into a new folder - you should expect to see a folder called "pyMedia-main" be created containing the project repo
-2. Open your preferred terminal of choice and change the working directory to the place you copied the repo to e.g the newly unzipped project folder
+2. Open your preferred terminal of choice and change the working directory in to the place you copied the repo to e.g your working directory should be inside the newly unzipped project folder
 * If using Windows, you can click in the address bar of the folder, delete everything in there, type the letters cmd and hit enter. A useful trick to open up command prompt 
 3. Create and activate a virtual environment so you can run the app from the project folder
 
