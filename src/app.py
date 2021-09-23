@@ -48,7 +48,7 @@ def youtube_route(mode, query):
         ## For ease, always return the first item from storage collection
         return render_template("youtube_watch.html", video_id = storage_collection[0]["id"])
 
-@app.route("/Flickr/<query>/<number_request>", methods = ['GET'])
+@app.route("/Flickr/<number_request>/<query>", methods = ['GET'])
 def flickr_route(query, number_request):
 
     ## Flickr public api will return a bytes string with json format which needs to be converted 
